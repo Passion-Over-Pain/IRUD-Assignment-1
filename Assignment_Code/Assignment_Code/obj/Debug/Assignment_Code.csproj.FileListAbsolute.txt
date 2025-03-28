@@ -1,0 +1,7 @@
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\bin\Debug\Assignment_Code.exe.config
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\bin\Debug\Assignment_Code.exe
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\bin\Debug\Assignment_Code.pdb
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\obj\Debug\Assignment_Code.csproj.AssemblyReference.cache
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\obj\Debug\Assignment_Code.csproj.CoreCompileInputs.cache
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\obj\Debug\Assignment_Code.exe
+C:\Users\s227284240\Desktop\GitHub-Projects\IRUD-Assignment-1\Assignment_Code\Assignment_Code\obj\Debug\Assignment_Code.pdb
