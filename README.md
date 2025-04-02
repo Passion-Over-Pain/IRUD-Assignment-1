@@ -185,7 +185,7 @@ public class OmnivoreFeeding : IFeedingStrategy
 }
 
 ```
-### Animal Base calss and subclasses
+### Animal Base class and subclasses
 ```csharp
 // Abstract Animal Class
 public abstract class Animal
