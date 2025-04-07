@@ -12,18 +12,26 @@ namespace Assignment_Code
         static void Main(string[] args)
         {
             // Create animals (pets) using the factory
-            Animal dog = AnimalFactory.CreateAnimal("dog");
-            Animal bird = AnimalFactory.CreateAnimal("bird");
+            Console.WriteLine("***FurEver Friends Animal Shelter***");
+            Console.WriteLine("");
 
+            Console.WriteLine("New pet rescued: Dog. Creating Object.");
+            Animal dog = AnimalFactory.CreateAnimal("dog");
             // Feeding behavior before changing strategy (default set by class)
             Console.WriteLine("Feeding Dog:");
             dog.Feed();
+            Console.WriteLine("");
 
+            Console.WriteLine("New pet rescued: Bird. Creating Object.");
+            Animal bird = AnimalFactory.CreateAnimal("bird");
+            // Feeding behavior before changing strategy (default set by class)
             Console.WriteLine("Feeding Bird:");
             bird.Feed();
 
+            Console.WriteLine("");
             // Changing feeding strategy at runtime (dynamically)
             Console.WriteLine("Changing Bird's feeding strategy to Omnivore...");
+            Console.WriteLine("Feeding Bird:");
             bird.SetFeedingStrategy(new OmnivoreFeeding());
             bird.Feed();
 
@@ -37,6 +45,7 @@ namespace Assignment_Code
         {
             switch (type.ToLower())
             {
+                //Current pets in FurEver Friends
                 case "dog": return new Dog();
                 case "cat": return new Cat();
                 case "bird": return new Bird();
@@ -62,6 +71,8 @@ namespace Assignment_Code
     // Feeding Strategy Interface
     public interface IFeedingStrategy
     {
+        // Based on what the animal (pet) eats, the console color changes
+        //Carnivore = Red // Herbivore = Green // Omnivore = Dark Yellow
         void Feed();
     }
 
@@ -70,7 +81,9 @@ namespace Assignment_Code
     {
         public void Feed()
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Feeding meat to this animal.");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 
@@ -78,7 +91,9 @@ namespace Assignment_Code
     {
         public void Feed()
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Feeding plants to this animal.");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 
@@ -86,7 +101,9 @@ namespace Assignment_Code
     {
         public void Feed()
         {
-            Console.WriteLine("Feeding a mix of plants and meat to this animal.");
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("Feeding a mixture of plants and meat to this animal.");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
     // Abstract Animal Class
