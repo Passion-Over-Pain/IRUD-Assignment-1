@@ -15,11 +15,11 @@ namespace Assignment_Code
             Console.WriteLine("***FurEver Friends Animal Shelter***");
             Console.WriteLine("");
 
-            Console.WriteLine("New pet rescued: Dog. Creating Object.");
-            Animal dog = AnimalFactory.CreateAnimal("dog");
+            Console.WriteLine("New pet rescued: Cat. Creating Object.");
+            Animal cat = AnimalFactory.CreateAnimal("cat");
             // Feeding behavior before changing strategy (default set by class)
-            Console.WriteLine("Feeding Dog:");
-            dog.Feed();
+            Console.WriteLine("Feeding Cat:");
+            cat.Feed();
             Console.WriteLine("");
 
             Console.WriteLine("New pet rescued: Bird. Creating Object.");
@@ -32,7 +32,9 @@ namespace Assignment_Code
             // Changing feeding strategy at runtime (dynamically)
             Console.WriteLine("Changing Bird's feeding strategy to Omnivore...");
             Console.WriteLine("Feeding Bird:");
-            bird.SetFeedingStrategy(new OmnivoreFeeding());
+            // Both methods below  provide the same result
+           // bird.SetFeedingStrategy(new OmnivoreFeeding()); 
+            bird.SetFeedingStrategy(FeedingStrategyFactory.CreateFeedingStrategy("omnivore"));
             bird.Feed();
 
             Console.ReadLine();
@@ -53,8 +55,58 @@ namespace Assignment_Code
             }
         }
     }
+    // Abstract Animal Class
+    public abstract class Animal
+    {
+        protected IFeedingStrategy feedingStrategy; // Composition, an object of another class
 
-    // Feeding Strategy Factory
+        public void SetFeedingStrategy(IFeedingStrategy strategy)
+        {
+            feedingStrategy = strategy;
+        }
+
+        public void Feed()
+        {
+            if (feedingStrategy != null)
+            {
+                feedingStrategy.Feed();
+            }
+            else
+            {
+                Console.WriteLine("Error: No feeding strategy set.");
+            }
+        }
+    }
+
+    // Concrete Animal Subclasses
+    public class Dog : Animal
+    {
+        //Dogs eat meat and plants... sort of
+        public Dog()
+        {
+            feedingStrategy = new OmnivoreFeeding();
+        }
+    }
+
+    public class Cat : Animal
+    {
+        //Cats eat meat 
+        public Cat()
+        {
+            feedingStrategy = new CarnivoreFeeding();
+        }
+    }
+
+    public class Bird : Animal
+    {
+        // By default birds eat plants (Geese), but (Hawks) are carnivores and (Chickens) are omnivores
+        public Bird()
+        {
+            feedingStrategy = new HerbivoreFeeding();
+        }
+    }
+
+    // Creates a Feeding Strategy instance
     public class FeedingStrategyFactory
     {
         public static IFeedingStrategy CreateFeedingStrategy(string type)
@@ -68,7 +120,7 @@ namespace Assignment_Code
             }
         }
     }
-    // Feeding Strategy Interface
+    // Blueprint construct for declaring Feeding Strategies
     public interface IFeedingStrategy
     {
         // Based on what the animal (pet) eats, the console color changes
@@ -106,55 +158,6 @@ namespace Assignment_Code
             Console.ForegroundColor = ConsoleColor.White;
         }
     }
-    // Abstract Animal Class
-    public abstract class Animal
-    {
-        protected IFeedingStrategy feedingStrategy;
-
-        public void SetFeedingStrategy(IFeedingStrategy strategy)
-        {
-            feedingStrategy = strategy;
-        }
-
-        public void Feed()
-        {
-            if (feedingStrategy != null)
-            {
-                feedingStrategy.Feed();
-            }
-            else
-            {
-                Console.WriteLine("Error: No feeding strategy set.");
-            }
-        }
-    }
-
-    // Concrete Animal Subclasses
-    public class Dog : Animal
-    {
-        //Dogs eat meat
-        public Dog()
-        {
-            feedingStrategy = new CarnivoreFeeding();
-        }
-    }
-
-    public class Cat : Animal
-    {
-        //Cats eat meat ... sort of
-        public Cat()
-        {
-            feedingStrategy = new CarnivoreFeeding();
-        }
-    }
-
-    public class Bird : Animal
-    {
-        // By default birds eat plants (Geese), but (Hawks) are carnivores and (Chickens) are omnivores 
-        public Bird()
-        {
-            feedingStrategy = new HerbivoreFeeding();
-        }
-    }
+   
 
 }
